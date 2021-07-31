@@ -1,0 +1,59 @@
+autocode:
+  root: C:\web\go-temp
+zap:
+  level: info
+  format: console
+  prefix: '[GO-TEMP]'
+  director: log
+  link-name: latest_log
+  showLine: true
+  encode-level: LowercaseColorLevelEncoder
+  stacktrace-key: stacktrace
+  log-in-console: true
+system:
+  env: public
+  addr: 9999
+  db-type: mysql
+  oss-type: local
+  use-multipoint: false
+mysql:
+  path: 127.0.0.1:3306
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db-name: gotemp
+  username: root
+  password: root
+  max-idle-conns: 0
+  max-open-conns: 0
+  log-mode: ""
+  log-zap: false
+timer:
+  start: true
+  spec: '@daily'
+  detail:
+    - tableName: operation_records
+      compareField: created_at
+      interval: 2160h
+redis:
+  db: 0
+  addr: 127.0.0.1:6379
+  password: root
+local:
+  path: uploads/file
+captcha:
+  key-long: 6
+  img-width: 240
+  img-height: 80
+jwt:
+  signing-key: charlieCen
+  expires-time: 604800
+  buffer-time: 86400
+email:
+  to: xxx@qq.com
+  port: 465
+  from: xxx@163.com
+  host: smtp.163.com
+  is-ssl: true
+  secret: xxx
+  nickname: test
+casbin:
+  model-path: ./resource/rbac_model.conf
